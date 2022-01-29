@@ -5,17 +5,17 @@ plugins {
 
 
 //方式1,buildSrc形式
-apply plugin: 'com.petterp.router.buildSrc'
-routerBuildSrc {
-    wikiDir "buildSrc"
-}
+//apply plugin: 'com.petterp.router.buildSrc'
+//routerBuildSrc {
+//    wikiDir "buildSrc"
+//}
 
 // 方式2,独立项目形式,记得自行在根build.gradle导入,并且在settings中配置
-apply plugin: 'com.petterp.router.standard'
-
-routerStand {
-    wikiDir "standard"
-}
+//apply plugin: 'com.petterp.router.standard'
+//
+//routerStand {
+//    wikiDir "standard"
+//}
 
 android {
     compileSdk 32

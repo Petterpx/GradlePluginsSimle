@@ -5,17 +5,20 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        //测试自定义的router-gradle-plugin插件
+//        classpath "com.github.Petterpx:GradlePluginsSimle:1.0"
     }
 }
 
 //手动导入插件，apply false代表此插件仅应用于构建中的部分或全部子model,而不是root项目
-plugins {
-    id "com.petterp.router.standard" apply false
-}
+//plugins {
+//    id "com.petterp.router.standard" apply false
+//}
 
 
 task clean(type: Delete) {

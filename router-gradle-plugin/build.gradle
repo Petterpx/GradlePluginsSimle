@@ -2,13 +2,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'java-gradle-plugin'
 apply plugin: 'kotlin'
 
-def ID = 'com.petterp.router.standard'
-def IMPLEMENTATION_CLASS = 'com.petterp.router.standard.RouterPlugin'
-def GROUP_ID = 'com.petterp.router'
-def ARTIFACT_ID = 'standard'
-def VERSION = '1.0.1'
-def MAVEN_URL = '../repo'
-
 buildscript {
     repositories {
         google()
@@ -32,32 +25,34 @@ gradlePlugin {
     plugins {
         //插件名,每一个插件都可以有
         routerPlugin {
-            id = ID
-            implementationClass = IMPLEMENTATION_CLASS
+            id = 'com.petterp.router.standard'
+            implementationClass = 'com.petterp.router.standard.RouterPlugin'
         }
     }
 }
 
 //上传到maven时需要
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                groupId = GROUP_ID
-                artifactId = ARTIFACT_ID
-                version = VERSION
-            }
+
+
+
+group = 'com.petterp.router'
+version = '1.0.1'
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'standard'
         }
     }
     //本地生成的插件位置
     repositories {
         maven {
             // change to point to your repo, e.g. http://my.org/repo
-            url = uri(MAVEN_URL)
+            url = uri('../repo')
         }
     }
 }
-
 
 dependencies {
     implementation 'com.android.tools.build:gradle:7.0.3'

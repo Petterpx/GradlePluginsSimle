@@ -1,0 +1,8 @@
+//使用另一个项目中的插件,其实下面的用法一般是跨项目
+pluginManagement {
+    repositories {
+        maven {
+            url = uri('../repo')
+        }
+    }
+}

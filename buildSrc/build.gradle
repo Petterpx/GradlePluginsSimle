@@ -1,0 +1,63 @@
+apply plugin: 'maven-publish'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'kotlin'
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // 因为使用的 Kotlin 需要需要添加 Kotlin 插件
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10-RC"
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+}
+
+def ID = 'com.petterp.router.buildSrc'
+def IMPLEMENTATION_CLASS = 'com.petterp.router.buildSrc.RouterPlugin'
+def GROUP_ID = 'com.petterp.router'
+def ARTIFACT_ID = 'buildSrc'
+def VERSION = '1.0.0'
+def MAVEN_URL = '../repo'
+
+//本地依赖插件时使用
+gradlePlugin {
+    plugins {
+        //插件名,每一个插件都可以有
+        routerPlugin {
+            id = ID
+            implementationClass = IMPLEMENTATION_CLASS
+        }
+    }
+}
+
+//上传到maven时需要
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = GROUP_ID
+            artifactId = ARTIFACT_ID
+            version = VERSION
+            from components.java
+        }
+    }
+    //本地生成的插件位置
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = uri(MAVEN_URL)
+        }
+    }
+}
+
+
+dependencies {
+    implementation 'com.android.tools.build:gradle:7.0.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+}
+

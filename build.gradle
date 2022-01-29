@@ -1,0 +1,23 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+    }
+}
+
+//手动导入插件，apply false代表此插件仅应用于构建中的部分或全部子model,而不是root项目
+plugins {
+    id "com.petterp.router.standard" apply false
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
